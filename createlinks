@@ -25,3 +25,5 @@ use esmith::Build::CreateLinks  qw(:all);
 event_actions('nethserver-backup-history-update', qw(
     initialize-default-databases 00
 ));
+
+safe_symlink('/var/lib/nethserver/backup' => 'root/usr/share/nethesis/nethserver-manager/backup');

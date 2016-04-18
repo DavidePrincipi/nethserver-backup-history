@@ -1,0 +1,11 @@
+{
+    #
+    # 30backup_history
+    #
+    push @cmnd_alias_httpd_admin, qw(
+        /sbin/e-smith/delete-config
+        /sbin/e-smith/backup-config-rotate
+        /sbin/e-smith/upload-config
+    );
+    '';
+}
