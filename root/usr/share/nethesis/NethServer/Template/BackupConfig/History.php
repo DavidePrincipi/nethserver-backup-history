@@ -1,4 +1,8 @@
 <?php
+
+$view->useFile('js/jquery.qtip.min.js');
+$view->useFile('css/jquery.qtip.min.css');
+
 $view->includeCSS("
   #bc_module_warning {
      margin-bottom: 8px;
