@@ -7,7 +7,7 @@ Group: System
 Source: %{name}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: nethserver-devtools, gettext
-Requires: nethserver-base
+Requires: nethserver-backup-config
 
 %description
 NethServer backup config history
