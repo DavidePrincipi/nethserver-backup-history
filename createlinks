@@ -26,4 +26,8 @@ event_actions('nethserver-backup-history-update', qw(
     initialize-default-databases 00
 ));
 
+event_actions('post-backup-config', qw(
+    nethserver-backup-history-rotate 90
+));
+
 safe_symlink('/var/lib/nethserver/backup' => 'root/usr/share/nethesis/nethserver-manager/backup');

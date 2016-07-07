@@ -4,6 +4,7 @@ use strict;
 use NethServer::BackupConfig;
 use esmith::ConfigDB;
 use vars qw();
+use File::Basename;
 
 sub bkp_cfg_db_settings{
 	my $db = esmith::ConfigDB->open or die "Couldn't open ConfigDB \n";
@@ -18,7 +19,7 @@ sub rotate_backup_files{
 	if ($keep == 0) {exit 0;};
 
 	# define the backup folder
-	my $bkp_dir = NethServer::BackupConfig::DESTINATION_DIR;
+	my $bkp_dir = dirname(NethServer::BackupConfig::DESTINATION);
 
 	#open the backups folder for processing
 	opendir (DIR, $bkp_dir) or die "Error opening '$bkp_dir': '$!' \n";
@@ -43,7 +44,7 @@ sub rotate_backup_files{
 															 foreach my $file_extra (@slice) {
 
 															 # remove the backup file and the md5 files
-															 if ( ! -f NethServer::BackupConfig::DESTINATION_DIR.$file_extra ) {
+															 if ( ! -f $bkp_dir . '/' .$file_extra ) {
 																																print $file_extra." configuration backup file not found! \n";
 																																} else {
 																																		unlink "/var/lib/nethserver/backup/".$file_extra or warn "Error removing ".$file_extra;
