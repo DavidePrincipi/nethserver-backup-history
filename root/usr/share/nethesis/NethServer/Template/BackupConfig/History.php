@@ -331,9 +331,6 @@ echo "<dl class='rlc_module'>";
 echo "</dl>";
 
 echo "<div id='bc_module_warning' class='ui-state-highlight'> <span class='ui-icon ui-icon-info'></span>".$T('history_config_label')."</div>";
-echo $view->buttonList()
-    ->insert($view->button('Execute', $view::BUTTON_SUBMIT))
-    ->insert($view->button('Help', $view::BUTTON_HELP));
 
 // DEBUG //
 
@@ -676,4 +673,3 @@ $(document).on('mouseover', '.md5_error, .md5_ok', function(ev) {
   });
 })(jQuery);
 ");
-?>
