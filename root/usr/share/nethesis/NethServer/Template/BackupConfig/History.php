@@ -314,7 +314,7 @@ function table_backup() {
 
 };
 
-echo $view->header()->setAttribute('template', $T('backup_config_Header'));
+echo $view->header()->setAttribute('template', $T('history_config_Header'));
 
 echo "<p>&nbsp;</p>";
 
@@ -330,7 +330,7 @@ echo "<div id=\"table_holder\" >".table_backup()."</div>";
 echo "<dl class='rlc_module'>";
 echo "</dl>";
 
-echo "<div id='bc_module_warning' class='ui-state-highlight'> <span class='ui-icon ui-icon-info'></span>".$T('backup_config_label')."</div>";
+echo "<div id='bc_module_warning' class='ui-state-highlight'> <span class='ui-icon ui-icon-info'></span>".$T('history_config_label')."</div>";
 echo $view->buttonList()
     ->insert($view->button('Execute', $view::BUTTON_SUBMIT))
     ->insert($view->button('Help', $view::BUTTON_HELP));
