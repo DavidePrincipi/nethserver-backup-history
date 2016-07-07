@@ -29,5 +29,6 @@ rm -f %{name}-%{version}-%{release}-filelist
 %defattr(-,root,root)
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
+%config %attr(440,root,root) %{_sysconfdir}/sudoers.d/30_nethserver_backup_history
 
 %changelog
