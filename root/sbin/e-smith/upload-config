@@ -26,28 +26,26 @@
 use strict;
 use File::Copy;
 use NethServer::BackupConfig;
+use File::Basename;
 
 my $bkp_file=$ARGV[0];
 my $dest_bkp_file=$ARGV[1];
-
+my $dest_dir = dirname(NethServer::BackupConfig::DESTINATION) . '/';
 my $backup = new NethServer::BackupConfig();
-
-
 
 if (not defined $bkp_file) { print "TMP backup file not specified \n"; exit 0; };
 
 if ( ! -f $bkp_file ) {
-						print "Tmp Backup file not found! Or can't copy the tmp backup ".$bkp_file." \n";
-						exit 0;
-		} else {
-			copy($bkp_file, NethServer::BackupConfig::DESTINATION_DIR.$dest_bkp_file) or warn " Error copying ".$bkp_file." \n";
-			if ( ! -f $bkp_file ) { print "Can't create MD5 file for the backup ".$dest_bkp_file." \n"; exit 0; }
-									else {
-											exec "/usr/libexec/nethserver/backup-config-md5 ".NethServer::BackupConfig::DESTINATION_DIR.$dest_bkp_file;
-											};
-
-
-			};
+    print "Tmp Backup file not found! Or can't copy the tmp backup ".$bkp_file." \n";
+    exit 0;
+} else {
+    copy($bkp_file, $dest_dir . $dest_bkp_file) or warn " Error copying ".$bkp_file." \n";
+    if ( ! -f $bkp_file ) {
+        print "Can't create MD5 file for the backup ".$dest_bkp_file." \n"; exit 0;
+    } else {
+        exec "/usr/libexec/nethserver/backup-config-md5 " . $dest_dir . $dest_bkp_file;
+    };
+};
 
 
 exit 0;

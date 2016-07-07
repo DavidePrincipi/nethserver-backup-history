@@ -25,28 +25,24 @@
 
 use strict;
 use NethServer::BackupConfig;
+use File::Basename;
 
 my $bkp_file=$ARGV[0];
-
-my $status;
-
+my $dest_dir = dirname(NethServer::BackupConfig::DESTINATION) . '/';
 my $backup = new NethServer::BackupConfig();
-
-# my $tracker = NethServer::TrackerClient->new();
 
 if (not defined $bkp_file) { print "No backup file specified"; die; };
 
-if ( ! -f NethServer::BackupConfig::DESTINATION_DIR.$bkp_file ) {
+if ( ! -f $dest_dir . $bkp_file ) {
 
-        print "Backup file not found or can't delete backup ".$bkp_file;
-        die;
+    print "Backup file not found or can't delete backup ".$bkp_file;
+    die;
 
-    } else {
-		unlink "/var/lib/nethserver/backup/".$bkp_file or warn "Error removing ".$bkp_file;
-		unlink "/var/lib/nethserver/backup/".$bkp_file.".md5" or warn "Error removing ".$bkp_file.".md5";
-		unlink "/var/lib/nethserver/backup/".$bkp_file."-content.md5" or warn "Error removing ".$bkp_file."-content.md5";
-
-		};
+} else {
+    unlink "/var/lib/nethserver/backup/".$bkp_file or warn "Error removing ".$bkp_file;
+    unlink "/var/lib/nethserver/backup/".$bkp_file.".md5" or warn "Error removing ".$bkp_file.".md5";
+    unlink "/var/lib/nethserver/backup/".$bkp_file."-content.md5" or warn "Error removing ".$bkp_file."-content.md5";
+}
 
 
 exit 0;
