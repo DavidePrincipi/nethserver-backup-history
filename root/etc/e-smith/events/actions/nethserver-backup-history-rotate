@@ -5,6 +5,15 @@ use NethServer::BackupConfig;
 use esmith::ConfigDB;
 use vars qw();
 use File::Basename;
+use File::Copy;
+use Time::localtime;
+
+sub timestamp {
+    my $t = localtime();
+    return sprintf( "%04d-%02d-%02d_%02d-%02d-%02d",
+        $t->year + 1900, $t->mon + 1, $t->mday,
+        $t->hour, $t->min, $t->sec );
+}
 
 sub bkp_cfg_db_settings {
     my $db = esmith::ConfigDB->open_ro() or die "Couldn't open ConfigDB\n";
