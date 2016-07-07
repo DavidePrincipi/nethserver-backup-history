@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+filename=${1:?filename argument missing}
+destdir=/var/lib/nethserver/backup
+
+cp -pv ${destdir}/${filename} $destdir/backup-config.tar.xz
+cp -pv ${destdir}/${filename}.md5 $destdir/backup-config.tar.xz.md5
+cp -pv ${destdir}/${filename}-content.md5 $destdir/backup-config.tar.xz-content.md5
+

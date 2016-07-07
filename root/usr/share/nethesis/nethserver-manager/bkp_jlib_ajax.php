@@ -204,7 +204,7 @@ function restore_backup($backup_file) {
 	unset($out, $err);
 
 	if ((isset($backup_file)) && (!empty($backup_file)) && (get_file_extension($backup_file) == "xz")) {
-		$command='/usr/bin/sudo /sbin/e-smith/restore-config '.$backup_file;
+		$command='/usr/bin/sudo -n /usr/libexec/nethserver/backup-history-restore ' . $backup_file;
 		$rezult = exec($command, $out, $err);
 	};
 if ($err == 0) {return "</br>Restoration of: ".$backup_file." Done!" ; }

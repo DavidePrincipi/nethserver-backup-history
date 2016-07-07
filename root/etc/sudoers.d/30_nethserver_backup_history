@@ -2,6 +2,6 @@
 # 30_nethserver_backup_history
 #
 %adm ALL=NOPASSWD: /sbin/e-smith/delete-config, \
-    /sbin/e-smith/backup-config-rotate, \
+    /usr/libexec/nethserver/backup-history-restore, \
     /sbin/e-smith/upload-config
 
