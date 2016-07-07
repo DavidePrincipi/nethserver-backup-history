@@ -29,6 +29,12 @@ if ($keep == 0) {
 # define the backup folder
 my $bkp_dir = dirname(NethServer::BackupConfig::DESTINATION);
 
+my $history_destination = $bkp_dir . '/backup-config_' . timestamp() . '.tar.xz';
+copy(NethServer::BackupConfig::DESTINATION, $history_destination) || warn "[WARNING] copy to $history_destination failed!";
+copy(NethServer::BackupConfig::DESTINATION . '.md5', $history_destination . '.md5') || warn "[WARNING] copy to $history_destination.md5 failed!";
+copy(NethServer::BackupConfig::DESTINATION . '-content.md5', $history_destination . '-content.md5') || warn "[WARNING] copy to $history_destination-content.md5 failed!";
+chmod 0644, $history_destination;
+
 #open the backups folder for processing
 opendir (DIR, $bkp_dir) or die "Error opening '$bkp_dir': '$!' \n";
 
