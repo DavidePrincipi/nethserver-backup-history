@@ -284,7 +284,7 @@ function table_backup() {
                     <th style="width: 81px;" > Restore </th>
                 </tr></thead><tbody>';
 
-	$files=glob('backup/*.{xz}', GLOB_BRACE);
+	$files=glob('backup/backup-config_*.tar.xz');
 	arsort($files);		//sort the array to display the latest backup first
     $i=0;
     foreach ($files as $value) {
