@@ -8,23 +8,8 @@ use vars qw();
 sub bkp_cfg_db_settings{
 	my $db = esmith::ConfigDB->open or die "Couldn't open ConfigDB \n";
 	my $config = $db->get("backup-config") or die "Backup-Config settings missing from ConfigDB \n";
-	my $record = $config->prop("keep_backups");
-
-    # set default limit for number of files to have
-    my $value = 30 ;
-
-    if ($record)
-           {
-               $value = $record;
-
-           } else {
-
-					$config->set_prop("keep_backups", $value);
-					$value = $config->prop("keep_backups");
-					}
-
-	return $value;
-	}
+    return $config->get_prop('backup-config', 'keep_backups') || '30';
+}
 
 sub rotate_backup_files{
 
